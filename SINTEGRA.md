@@ -6,15 +6,15 @@
 
 **LEMBRE-SE: as consultas usando o SDK sempre retornam um objeto stdClass.**
 
-*NOTA: todo o processamento do sintegra é ASSINCRONO, ou seja é reliazados através de filas de processamento, portanto caso se deseje saber a situação do processamento será necessaria realizar uma consulta.*
+*NOTA: todo o processamento do sintegra é ASSINCRONO, ou seja é realizado através de filas de processamento, portanto caso se deseje saber a situação do processamento será necessaria realizar uma consulta.*
 
-A geração do SINTEGRA (obrigação acessória), é realizada sobre os dados consistidos na base de dados do sistema do emitente, portanto se faz necessário que sejam extraidos e processados os dados necessários do SEU sistema a fim de ser possível a geração do arquivo do SINTEGRA.
+A geração do SINTEGRA (obrigação acessória), é realizada sobre os dados consistidos na base de dados do sistema do emitente, portanto se faz necessário que sejam extraidos e processados os dados do SEU sistema a fim de ser possível a geração do arquivo do SINTEGRA.
 
-Etapa 1 - processar os dados necessários e enviar para a API os arquivos zip obtidos
+- Etapa 1 - processar os dados necessários e enviar para a API os arquivos zip obtidos
         
-Etapa 2 - consultar a situação do processamento, casos todos os arquivos tenham sido processados com sucesso, estará autorizado a solicitar a geração do Sintegra desses dados. 
+- Etapa 2 - consultar a situação do processamento, casos todos os arquivos tenham sido processados com sucesso, estará autorizado a solicitar a geração do Sintegra desses dados. 
 
-Etapa 3 - solicitar a geração do arquivo SINTEGRA
+- Etapa 3 - solicitar a geração do arquivo SINTEGRA
 
 **NOTA: caso o emitente cadastrado possua um webhook para receber notificações, o resultado das operações será retornado por esse canal de forma automática ao término do processamento, seja com sucesso ou com alguma falha.** 
 
