@@ -6,7 +6,7 @@
 
 **LEMBRE-SE: as consultas usando o SDK sempre retornam um objeto stdClass.**
 
-*NOTA: todo o processamento do sintegra é ASSINCRONO, ou seja é realizado através de filas de processamento, portanto caso se deseje saber a situação do processamento será necessaria realizar uma consulta.*
+*NOTA: todo o processamento do sintegra é ASSINCRONO, ou seja é realizado através de filas de processamento, portanto caso se deseje saber a situação do processamento será necessaria realizar uma consulta. A depender do volume de dados o processamento completo pode levar algumas horas.*
 
 A geração do SINTEGRA (obrigação acessória), é realizada sobre os dados consistidos na base de dados do sistema do emitente, portanto se faz necessário que sejam extraidos e processados os dados do SEU sistema a fim de ser possível a geração do arquivo do SINTEGRA.
 
