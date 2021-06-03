@@ -1,26 +1,22 @@
 <?php
 
-require_once('../../bootstrap.php');
+require_once(__DIR__ . '/../../bootstrap.php');
 
-use CloudDfe\SdkC\Client;
 use CloudDfe\SdkC\Certificado;
-
+/**
+ * Este exemplo de uma chamada a API usando este SDK
+ *
+ * Este método retorna os dados do certificado atual do emitente
+ */
 try {
-
-    //token de emitente
-    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE';
-    $ambiente = Client::AMBIENTE_HOMOLOGACAO;
-    $options = [
-        'debug' => false
+    $params = [
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'ambiente' => Certificado::AMBIENTE_HOMOLOGACAO,
+        'options' => [
+            'debug' => false,
+        ]
     ];
-
-    $client = new Client([
-        'ambiente' => $ambiente,
-        'token' => $token,
-        'options' => $options
-    ]);
-
-    $certificado = new Certificado($client);
+    $certificado = new Certificado($params);
 
     $resp = $certificado->mostra();
 

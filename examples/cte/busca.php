@@ -1,26 +1,19 @@
 <?php
 
-require_once('../../bootstrap.php');
+require_once(__DIR__ . '/../../bootstrap.php');
 
-use CloudDfe\SdkC\Client;
 use CloudDfe\SdkC\Cte;
 
 try {
-
-    //token de emitente
-    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE';
-    $ambiente = Client::AMBIENTE_HOMOLOGACAO;
-    $options = [
-        'debug' => false
+    $params = [
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'ambiente' => Cte::AMBIENTE_HOMOLOGACAO,
+        'options' => [
+            'debug' => false,
+        ]
     ];
 
-    $client = new Client([
-        'ambiente' => $ambiente,
-        'token' => $token,
-        'options' => $options
-    ]);
-
-    $cte = new Cte($client);
+    $cte = new Cte($params);
 
     $resp = $cte->busca([
         "numero_inicial" => 1710,
@@ -31,7 +24,7 @@ try {
         //"cancel_inicial" => "2019-12-01", // Cancelamento
         //"cancel_final" => "2019-12-31"
     ]);
-
+    //os payloads são sempre ARRAYS
     echo "<pre>";
     print_r($resp);
     echo "</pre>";

@@ -1,10 +1,7 @@
 <?php
 
-declare(strict_types=1);
-
 namespace CloudDfe\SdkC;
 
-use HttpCurl;
 use stdClass;
 
 class Client
@@ -43,7 +40,13 @@ class Client
     const AMBIENTE_PRODUCAO = 1;
     const AMBIENTE_HOMOLOGACAO = 2;
 
-    public function __construct($params = [])
+    /**
+     * Client constructor.
+     * @param array $params
+     * @param string $direction
+     * @throws \Exception
+     */
+    public function __construct($params = [], $direction = 'api')
     {
         $this->params = $params;
         if (empty($params)) {
@@ -62,30 +65,36 @@ class Client
         if (!empty($params['options'])) {
             $debug = $params['options']['debug'] == true ? true : false;
         }
-        //default homologacao
-        $this->uri = 'https://hom.api.cloud-dfe.com.br/v1';
-        if ($this->ambiente == self::AMBIENTE_PRODUCAO) {
-            $this->uri = 'https://api.cloud-dfe.com.br/v1';
-        }
+        $config = json_decode(file_get_contents(__DIR__ .'/config.json'), true);
+        $this->uri = $config[$direction][$this->ambiente];
         $this->client = new HttpCurl([
             'debug' => $debug,
             'base_uri' => $this->uri,
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-                'Authorization' => $this->token
-            ],
+            'token' => $this->token,
             'options' => $this->options
         ]);
     }
 
-    public function send(string $method, string $route, array $payload = []): stdClass
+    /**
+     * @param string $route
+     * @param array $payload
+     * @return stdClass
+     * @throws \Exception
+     */
+    public function sendMultpart($route, $payload)
     {
-        if (!empty($payload)) {
-            $json = json_encode($payload);
-            $payload = ['body' => $json];
-        }
-        $response = $this->client->request($method, $route, $payload);
-        return json_decode($response);
+        return json_decode($this->client->sendMultipart($route, $payload));
+    }
+
+    /**
+     * Envia os dados ao servidor
+     * @param string $method
+     * @param string $route
+     * @param array $payload
+     * @return stdClass
+     */
+    public function send($method, $route, $payload = [])
+    {
+        return json_decode($this->client->request($method, $route, $payload));
     }
 }

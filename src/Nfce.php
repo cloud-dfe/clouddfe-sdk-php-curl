@@ -1,13 +1,15 @@
 <?php
 
-declare(strict_types=1);
-
 namespace CloudDfe\SdkC;
 
 use stdClass;
 
 class Nfce extends Base
 {
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
     public function cria(array $payload): stdClass
     {
         return $this->client->send('POST', "/nfce", $payload);

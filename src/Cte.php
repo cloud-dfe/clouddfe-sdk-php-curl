@@ -1,61 +1,110 @@
 <?php
 
-declare(strict_types=1);
-
 namespace CloudDfe\SdkC;
 
 use stdClass;
 
 class Cte extends Base
 {
-    public function cria(array $payload): stdClass
+    /**
+     * Cria uma nova CTe
+     * @param $payload
+     * @return stdClass
+     */
+    public function cria($payload)
     {
         return $this->client->send('POST', "/cte", $payload);
     }
 
-    public function preview(array $payload): stdClass
+    /**
+     * Prevalida dados para emissão de CTe
+     * @param array $payload
+     * @return stdClass
+     */
+    public function preview($payload)
     {
         return $this->client->send('POST', "/cte/preview", $payload);
     }
 
-    public function status(): stdClass
+    /**
+     * Consulta status da SEFAZ
+     * @return stdClass
+     */
+    public function status()
     {
         return $this->client->send('GET', '/cte/status', []);
     }
 
-    public function consulta(array $payload): stdClass
+    /**
+     * Consulta CTe pela Chave
+     * @param array $payload
+     * @return stdClass
+     * @throws \Exception
+     */
+    public function consulta($payload)
     {
         $key = self::checkKey($payload);
         return $this->client->send('GET', "/cte/{$key}", []);
     }
 
-    public function busca(array $payload): stdClass
+    /**
+     * Consulta CTes na base de dados
+     * @param array $payload
+     * @return stdClass
+     */
+    public function busca($payload)
     {
         return $this->client->send('POST', "/cte/busca", $payload);
     }
 
-    public function cancela(array $payload): stdClass
+    /**
+     * Cancela CTe
+     * @param array $payload
+     * @return stdClass
+     */
+    public function cancela($payload)
     {
         return $this->client->send('POST', "/cte/cancela", $payload);
     }
 
-    public function correcao(array $payload): stdClass
+    /**
+     * Gera carta de correção de CTe
+     * @param array $payload
+     * @return stdClass
+     */
+    public function correcao($payload)
     {
         return $this->client->send('POST', "/cte/correcao", $payload);
     }
 
-    public function inutiliza(array $payload): stdClass
+    /**
+     * Inutiliza faixa de CTe
+     * @param array $payload
+     * @return stdClass
+     */
+    public function inutiliza($payload)
     {
         return $this->client->send('POST', "/cte/inutiliza", $payload);
     }
 
-    public function pdf(array $payload): stdClass
+    /**
+     * Solicita DACTE
+     * @param array $payload
+     * @return stdClass
+     * @throws \Exception
+     */
+    public function pdf($payload)
     {
         $key = self::checkKey($payload);
         return $this->client->send('GET', "/cte/pdf/{$key}", []);
     }
 
-    public function backup(array $payload): stdClass
+    /**
+     * Busca por backup de CTe emitidas
+     * @param array $payload
+     * @return stdClass
+     */
+    public function backup($payload)
     {
         return $this->client->send('POST', "/cte/backup", $payload);
     }

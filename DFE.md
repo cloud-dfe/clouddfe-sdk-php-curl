@@ -16,7 +16,7 @@ NOTA: Esta busca não irá trazer as NFe que ainda não foram localizadas no web
 ```php
 
 use CloudDfe\SdkC\Client;
-use CloudDfe\SdkC\DFe;
+use CloudDfe\SdkC\Dfe;
 
 try {
 
@@ -33,7 +33,7 @@ try {
         'options' => $options
     ]);
 
-    $dfe = new DFe($client);
+    $dfe = new Dfe($client);
 
     //a consulta poderá ser feita por quelquer um desses parametros, ordenados por precedência,
     //ou  seja de a chave for passada a busca será feita exclusivamente pela chave, se a chave não for passada
@@ -64,7 +64,7 @@ NOTA: Esta busca não irá trazer as CTe que ainda não foram localizadas no web
 ```php
 
 use CloudDfe\SdkC\Client;
-use CloudDfe\SdkC\DFe;
+use CloudDfe\SdkC\Dfe;
 
 try {
 
@@ -81,7 +81,7 @@ try {
         'options' => $options
     ]);
 
-    $dfe = new DFe($client);
+    $dfe = new Dfe($client);
 
     //a consulta poderá ser feita por quelquer um desses parametros, ordenados por precedência,
     //ou  seja de a chave for passada a busca será feita exclusivamente pela chave, se a chave não for passada
@@ -111,7 +111,7 @@ Após o dia 5 de cada mês, o sistema DFe irá criar um backup em ZIP de todos o
 
 ```php
 use CloudDfe\SdkC\Client;
-use CloudDfe\SdkC\DFe;
+use CloudDfe\SdkC\Dfe;
 
 try {
 
@@ -128,7 +128,7 @@ try {
         'options' => $options
     ]);
 
-    $dfe = new DFe($client);
+    $dfe = new Dfe($client);
 
     $payload = [
         "tipo" => "nfe", // nfe ou cte

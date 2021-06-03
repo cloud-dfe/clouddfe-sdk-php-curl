@@ -1,26 +1,27 @@
 <?php
 
-require_once('../../bootstrap.php');
+require_once(__DIR__ . '/../../bootstrap.php');
 
-use CloudDfe\SdkC\Client;
 use CloudDfe\SdkC\Nfse;
 
+/**
+ * Este exemplo de uma chamada a API usando este SDK
+ *
+ * Este método recupera os dados de uma NFSe
+ *
+ * NOTA: ao executar esse metodo pode ser retornado os dados da NFSe emitida com sucesso ou erros
+ * no caso de erros o registro desse documento será deletado e assim que os erros forem corrigidos nova NFSe poderá ser
+ * emitida usando o método cria
+ */
 try {
-
-    //token de emitente
-    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE';
-    $ambiente = Client::AMBIENTE_HOMOLOGACAO;
-    $options = [
-        'debug' => false
+    $params = [
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'ambiente' => Nfse::AMBIENTE_HOMOLOGACAO,
+        'options' => [
+            'debug' => false,
+        ]
     ];
-
-    $client = new Client([
-        'ambiente' => $ambiente,
-        'token' => $token,
-        'options' => $options
-    ]);
-
-    $nfse = new Nfse($client);
+    $nfse = new Nfse($params);
 
     $payload = [
         'chave' => '41210222545265000108550010001010031384099675'

@@ -1,31 +1,28 @@
 <?php
 
-require_once('../../bootstrap.php');
+require_once(__DIR__ . '/../../bootstrap.php');
 
-use CloudDfe\SdkC\Client;
 use CloudDfe\SdkC\Emitente;
-
+/**
+ * Este exemplo de uma chamada a API usando este SDK
+ *
+ * Este método atualiza os dados do emitente e requer o TOKEN do próprio emitente para ser realizado.
+ */
 try {
-
-    //token de emitente
-    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE';
-    $ambiente = Client::AMBIENTE_HOMOLOGACAO;
-    $options = [
-        'debug' => false
+    $params = [
+        'ambiente' => Emitente::AMBIENTE_HOMOLOGACAO,
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE',
+        'options' => [
+            'debug' => false,
+        ]
     ];
-
-    $client = new Client([
-        'ambiente' => $ambiente,
-        'token' => $token,
-        'options' => $options
-    ]);
-
-    $emitente = new Emitente($client);
+    $emitente = new Emitente($params);
 
     $payload = [
-        'numero' => '123',
-        'senha' => 'senha'
+        'nome' => 'FAKE INDUSTRIA',
+        'razao' => 'FAKE INDUSTRIA E COMERCIO LTDA'
     ];
+    //os payloads são sempre ARRAYS
     $resp = $emitente->atualiza($payload);
 
     echo "<pre>";

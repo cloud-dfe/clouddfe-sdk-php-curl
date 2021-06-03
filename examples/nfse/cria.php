@@ -1,27 +1,28 @@
 <?php
 
-require_once('../../bootstrap.php');
+require_once(__DIR__ . '/../../bootstrap.php');
 
-use CloudDfe\SdkC\Client;
 use CloudDfe\SdkC\Nfse;
 
+/**
+ * Este exemplo de uma chamada a API usando este SDK
+ *
+ * Este método solicita a criação de uma NFSe, pode ser retornado sucesso com os dados da NFSe emitida ou erros
+ * no caso de erros o registro dessa NFSe será deletado e assim que os erros forem corrigidos uma nova NFSe poderá ser criada
+ *
+ * NOTA: os dados necessários variam de acordo com o provedor de cada prefeitura
+ */
 try {
-
-    //token de emitente
-    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE';
-    $ambiente = Client::AMBIENTE_HOMOLOGACAO;
-    $options = [
-        'debug' => false
+    $params = [
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'ambiente' => Nfse::AMBIENTE_HOMOLOGACAO,
+        'options' => [
+            'debug' => false,
+        ]
     ];
+    $nfse = new Nfse($params);
 
-    $client = new Client([
-        'ambiente' => $ambiente,
-        'token' => $token,
-        'options' => $options
-    ]);
-
-    $nfse = new Nfse($client);
-
+    //dados do RPS para emissão da NFSe
     $paylod = [
         "numero" => "1",
         "serie" => "0",

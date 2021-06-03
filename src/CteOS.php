@@ -8,54 +8,95 @@ use stdClass;
 
 class CteOS extends Base
 {
-    public function cria(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function cria($payload)
     {
         return $this->client->send('POST', "/cteos", $payload);
     }
 
-    public function preview(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function preview($payload)
     {
         return $this->client->send('POST', "/cteos/preview", $payload);
     }
 
-    public function status(): stdClass
+    /**
+     * @return stdClass
+     */
+    public function status()
     {
         return $this->client->send('GET', '/cteos/status', []);
     }
 
-    public function consulta(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     * @throws \Exception
+     */
+    public function consulta($payload)
     {
         $key = self::checkKey($payload);
         return $this->client->send('GET', "/cteos/{$key}", []);
     }
 
-    public function busca(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function busca($payload)
     {
         return $this->client->send('POST', "/cteos/busca", $payload);
     }
 
-    public function cancela(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function cancela($payload)
     {
         return $this->client->send('POST', "/cteos/cancela", $payload);
     }
 
-    public function correcao(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function correcao($payload)
     {
         return $this->client->send('POST', "/cteos/correcao", $payload);
     }
 
-    public function inutiliza(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function inutiliza($payload)
     {
         return $this->client->send('POST', "/cteos/inutiliza", $payload);
     }
 
-    public function pdf(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     * @throws \Exception
+     */
+    public function pdf($payload)
     {
         $key = self::checkKey($payload);
         return $this->client->send('GET', "/cteos/pdf/{$key}", []);
     }
 
-    public function backup(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function backup($payload)
     {
         return $this->client->send('POST', "/cteos/backup", $payload);
     }

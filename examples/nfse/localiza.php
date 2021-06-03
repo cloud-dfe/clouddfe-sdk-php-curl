@@ -1,31 +1,42 @@
 <?php
 
-require_once('../../bootstrap.php');
+require_once(__DIR__ . '/../../bootstrap.php');
 
-use CloudDfe\SdkC\Client;
 use CloudDfe\SdkC\Nfse;
 
+/**
+ * Este exemplo de uma chamada a API usando este SDK
+ *
+ * Este método consulta a prefeitura em busca de NFSe que correspondam aos paramtros
+ *
+ * NOTA: cada provedor limita a forma de consulta e alguns não possuem esse método
+ */
 try {
-
-    //token de emitente
-    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE';
-    $ambiente = Client::AMBIENTE_HOMOLOGACAO;
-    $options = [
-        'debug' => false
+    $params = [
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'ambiente' => Nfse::AMBIENTE_HOMOLOGACAO,
+        'options' => [
+            'debug' => false,
+        ]
     ];
+    $nfse = new Nfse($params);
 
-    $client = new Client([
-        'ambiente' => $ambiente,
-        'token' => $token,
-        'options' => $options
-    ]);
-
-    $nfse = new Nfse($client);
-
+    //indicar os dados da busca
     $payload = [
-        "rps_numero" => "1",
-        "rps_serie" => "1",
-        "rps_tipo" => "1"
+        "data_emissao_inicial" => "2020-01-01",
+        "data_emissao_final" => "2020-01-31",
+        "data_competencia_inicial" => "2020-01-01",
+        "data_competencia_final" => "2020-01-31",
+        "tomador_cnpj" => null,
+        "tomador_cpf" => null,
+        "tomador_im" => null,
+        "nfse_numero" => null,
+        "nfse_numero_inicial" => null,
+        "nfse_numero_final" => null,
+        "rps_numero" => null,
+        "rps_serie" => null,
+        "rps_tipo" => null,
+        "pagina" => "1"
     ];
     $resp = $nfse->localiza($payload);
 

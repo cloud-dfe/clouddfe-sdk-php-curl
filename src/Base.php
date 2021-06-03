@@ -1,19 +1,38 @@
 <?php
 
-declare(strict_types=1);
-
 namespace CloudDfe\SdkC;
 
 class Base
 {
+    /**
+     * @var Client
+     */
     protected $client;
 
-    public function __construct(Client $client)
+    const AMBIENTE_PRODUCAO = 1;
+    const AMBIENTE_HOMOLOGACAO = 2;
+
+    /**
+     * Base constructor.
+     * @param array $params
+     * @throws \Exception
+     */
+    public function __construct(array $params)
     {
-        $this->client = $client;
+        $this->client = new Client([
+            'ambiente' => !empty($params['ambiente']) ? $params['ambiente'] : self::AMBIENTE_HOMOLOGACAO,
+            'token' => $params['token'],
+            'options' => $params['options']
+        ], 'api');
     }
 
-    protected static function checkKey(array $payload): string
+    /**
+     * Verifica a chave
+     * @param array $payload
+     * @return array|string|string[]
+     * @throws \Exception
+     */
+    protected static function checkKey(array $payload)
     {
         $key = preg_replace("/[^0-9]/", "", $payload['chave']);
         if (empty($key) || strlen($key) != 44) {

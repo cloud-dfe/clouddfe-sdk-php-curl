@@ -2,35 +2,33 @@
 
 *NOTA: estas operações funcionam em ambos os ambientes (homologação e produção)*
 
-*NOTA: Esta operação somente pode ser executada com o token do emitente.*
+*NOTA: Estas operações somente podem ser executada com o token do emitente.*
+
+*NOTA: campos opcionais nos payloads podem e devem ser NULIFICADOS ou não passados caso não sejam usados, nunca deixa-los como string vazia ou zero.*
 
 **LEMBRE-SE: as consultas usando o SDK sempre retornam um objeto stdClass;**
 
 
 ## Atualização de cadastro do Emitente
 
-A API permite que o emitente atualize seus próprios dados cadastrais, isso normalmente ocorre quando existe alguma alteração como mudança de endereço por exemplo.
+Este método solicita a alteração dos dodos cadastrais do emitente, isso normalmente ocorre quando existe alguma alteração como mudança de endereço por exemplo.
+
+*NOTA: não podem ser alterados o CNPJ ou o CPF do emitente.*
+
+É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/emitente/#!/1-5) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Client;
 use CloudDfe\SdkC\Emitente;
 
 try {
-
-    //token de emitente
-    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9 ....';
-    $ambiente = Client::AMBIENTE_HOMOLOGACAO;
-    $options = [
-        'debug' => false
+    $params = [
+        'ambiente' => Emitente::AMBIENTE_HOMOLOGACAO,
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE',
+        'options' => [
+            'debug' => false,
+        ]
     ];
-
-    $client = new Client([
-        'ambiente' => $ambiente,
-        'token' => $token,
-        'options' => $options
-    ]);
-
-    $emitente = new Emitente($client);
+    $emitente = new Emitente($params);
 
     $payload = [
         'nome' => 'FULANO DA SILVA',
@@ -58,9 +56,9 @@ try {
         'uf' => 'SP',
         'cep' => '02233000',
         'logo' => null
-
     ];
-    $resp = $emitente->atualiza($payload); //os payloads são sempre ARRAYS
+    //os payloads são sempre ARRAYS
+    $resp = $emitente->atualiza($payload);
 
     echo "<pre>";
     print_r($resp); //imprime o objeto $resp em tela
@@ -74,30 +72,27 @@ try {
 
 ## Troca do TOKEN de acesso a API
 
-E permite também que o emitente possa substituir seu TOKEN atual por um novo, isso pode ocorrer caso haja suspeita de violação da segurança do seu aplicativo.
+Este método solicita a troca de token do emitente.
 
-Ao executar essa chamada o TOKEN anterior deixará de validar e apenas o novo TOKEN criado porderá ser usado.
+*NOTA: Isso pode ocorrer caso haja suspeita de violação da segurança do seu aplicativo.*
+
+*NOTA: Ao executar essa chamada o TOKEN anterior deixará de validar e apenas o novo TOKEN criado porderá ser usado.*
+
+É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/emitente/#!/1-3) para poder enviar essa chamada.
 
 ```php
-use CloudDfe\SdkC\Client;
 use CloudDfe\SdkC\Emitente;
 
 try {
-
-    //token de emitente
-    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ ....';
-    $ambiente = Client::AMBIENTE_HOMOLOGACAO;
-    $options = [
-        'debug' => false
+    $params = [
+        'ambiente' => Emitente::AMBIENTE_HOMOLOGACAO,
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE',
+        'options' => [
+            'debug' => false,
+        ]
     ];
-
-    $client = new Client([
-        'ambiente' => $ambiente,
-        'token' => $token,
-        'options' => $options
-    ]);
-
-    $emitente = new Emitente($client);
+    $emitente = new Emitente($params);
+    
     $resp = $emitente->token();
 
     echo "<pre>";
@@ -111,26 +106,23 @@ try {
 
 ## Mostra os dados do emitente
 
+Este método mostra os dados atuais do emitente em nossas bases de dados.
+
+É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/emitente/) para poder enviar essa chamada.
+
 ```php
-use CloudDfe\SdkC\Client;
 use CloudDfe\SdkC\Emitente;
 
 try {
-
-    //token de emitente
-    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ ....';
-    $ambiente = Client::AMBIENTE_HOMOLOGACAO;
-    $options = [
-        'debug' => false
+    $params = [
+        'ambiente' => Emitente::AMBIENTE_HOMOLOGACAO,
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR-3c5V8iyITDmLoUF_SE',
+        'options' => [
+            'debug' => false,
+        ]
     ];
+    $emitente = new Emitente($params);
 
-    $client = new Client([
-        'ambiente' => $ambiente,
-        'token' => $token,
-        'options' => $options
-    ]);
-
-    $emitente = new Emitente($client);
     $resp = $emitente->mostra();
 
     echo "<pre>";

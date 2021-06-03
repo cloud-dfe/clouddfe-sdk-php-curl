@@ -1,29 +1,28 @@
 <?php
 
-require_once('../../bootstrap.php');
+require_once(__DIR__ . '/../../bootstrap.php');
 
-use CloudDfe\SdkC\Client;
 use CloudDfe\SdkC\Softhouse;
 
+/**
+ * Operações da SOFTHOUSE
+ *
+ * Este método retorna a lista dos emitentes cadastrados
+ *
+ * NOTA: estas operações devem ser realizadas apenas com o TOKEN da softhouse
+ */
 try {
-
-    //token da softhouse
-    $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjAsInVzciI6MiwidHAiOjEsImlhdCI6MTU3MjU0NzUyMX0.MfpnIPkIhqcPVUU7VQDK3-ANDAcRccnNubNIl7Na5_4';
-    $ambiente = Client::AMBIENTE_HOMOLOGACAO;
-    $options = [
-        'debug' => false
+    $params = [
+        'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
+        'ambiente' => Softhouse::AMBIENTE_HOMOLOGACAO,
+        'options' => [
+            'debug' => false,
+        ]
     ];
-
-    $client = new Client([
-        'ambiente' => $ambiente,
-        'token' => $token,
-        'options' => $options
-    ]);
-
-    $softhouse = new Softhouse($client);
+    $softhouse = new Softhouse($params);
 
     $payload = [
-        'status' => ''
+        'status' => 'ativos' //ativos ou inativos
     ];
     $resp = $softhouse->listaEmitentes($payload);
 

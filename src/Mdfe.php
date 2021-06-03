@@ -1,76 +1,125 @@
 <?php
 
-declare(strict_types=1);
-
 namespace CloudDfe\SdkC;
 
 use stdClass;
 
 class Mdfe extends Base
 {
-    public function cria(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function cria($payload)
     {
         return $this->client->send('POST', "/mdfe", $payload);
     }
 
-    public function preview(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function preview($payload)
     {
         return $this->client->send('POST', "/mdfe/preview", $payload);
     }
 
-    public function status(): stdClass
+    /**
+     * @return stdClass
+     */
+    public function status()
     {
         return $this->client->send('GET', '/mdfe/status', []);
     }
 
-    public function consulta(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     * @throws \Exception
+     */
+    public function consulta($payload)
     {
         $key = self::checkKey($payload);
         return $this->client->send('GET', "/mdfe/{$key}", []);
     }
 
-    public function busca(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function busca($payload)
     {
         return $this->client->send('POST', "/mdfe/busca", $payload);
     }
 
-    public function cancela(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function cancela($payload)
     {
         return $this->client->send('POST', "/mdfe/cancela", $payload);
     }
 
-    public function encerra(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function encerra($payload)
     {
         return $this->client->send('POST', "/mdfe/encerra", $payload);
     }
 
-    public function condutor(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function condutor($payload)
     {
         return $this->client->send('POST', "/mdfe/condutor", $payload);
     }
 
-    public function offline(): stdClass
+    /**
+     * @return stdClass
+     */
+    public function offline()
     {
         return $this->client->send('GET', "/mdfe/offline", []);
     }
 
-    public function pdf(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     * @throws \Exception
+     */
+    public function pdf($payload)
     {
         $key = self::checkKey($payload);
         return $this->client->send('GET', "/mdfe/pdf/{$key}", []);
     }
 
-    public function backup(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function backup($payload)
     {
         return $this->client->send('POST', "/mdfe/backup", $payload);
     }
 
-    public function nfe(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function nfe($payload)
     {
         return $this->client->send('POST', "/mdfe/nfe", $payload);
     }
 
-    public function abertos(): stdClass
+    /**
+     * @return stdClass
+     */
+    public function abertos()
     {
         return $this->client->send('GET', "/mdfe/abertos", []);
     }

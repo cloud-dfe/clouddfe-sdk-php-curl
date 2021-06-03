@@ -8,17 +8,28 @@ use stdClass;
 
 class Emitente extends Base
 {
-    public function token(): stdClass
+    /**
+     *
+     * @return stdClass
+     */
+    public function token()
     {
         return $this->client->send('GET', '/emitente/token', []);
     }
 
-    public function atualiza(array $payload): stdClass
+    /**
+     * @param array $payload
+     * @return stdClass
+     */
+    public function atualiza($payload)
     {
         return $this->client->send('PUT', "/emitente", $payload);
     }
 
-    public function mostra(): stdClass
+    /**
+     * @return stdClass
+     */
+    public function mostra()
     {
         return $this->client->send('GET', "/emitente", []);
     }
