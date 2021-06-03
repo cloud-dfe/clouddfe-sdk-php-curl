@@ -12,7 +12,7 @@ A geração do SINTEGRA (obrigação acessória), é realizada sobre os dados co
 
 - Etapa 1 - processar os dados necessários e enviar para a API os arquivos zip obtidos
         
-- Etapa 2 - consultar a situação do processamento, casos todos os arquivos tenham sido processados com sucesso, estará autorizado a solicitar a geração do Sintegra desses dados. 
+- Etapa 2 - consultar a situação do processamento, caso todos os arquivos tenham sido processados com sucesso, estará autorizado a solicitar a geração do Sintegra desses dados. 
 
 - Etapa 3 - solicitar a geração do arquivo SINTEGRA
 
@@ -95,7 +95,7 @@ try {
 ``` 
 ## Envio de dados do Inventário realizado
 
-São necessários (periódicamente) os dados relativos ao inventário realizado sobre os estoques existentes, com a contagem e precificação do itens desse estoque.
+São necessários (periodicamente) os dados relativos ao inventário realizado sobre os estoques existentes, com a contagem e precificação do itens desse estoque.
 Estes dados deverão ser extraidos, processados e colocados em um arquivo no formato json, e compactado com ZIP para ser enviado para analise e processamento na API.
 
 ```php
