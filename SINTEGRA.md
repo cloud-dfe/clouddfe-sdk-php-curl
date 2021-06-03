@@ -166,7 +166,7 @@ try {
 
 ## Geração do Sintegra
 
-Este método solicita a criação do arquivo SINTEGRA, como é uma operação ASSINCRINA outra soliciatação identica subsequente irá retornar o status desse processamento.
+Este método solicita a criação do arquivo SINTEGRA, como é uma operação ASSINCRINA outras soliciatações identicas subsequente irão retornar o status desse processamento.
 
 ```php
 use CloudDfe\SdkC\Sintegra;
