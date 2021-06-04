@@ -1,4 +1,4 @@
-# Operações com CTe
+# Operações com CTeOS
 
 *NOTA: estas operações funcionam em ambos os ambientes (homologação e produção)*
 
