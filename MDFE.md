@@ -26,6 +26,19 @@ Este método é usado paa GERAR uma nova MDFe
 [VIDE EXEMPLO](https://github.com/cloud-dfe/clouddfe-sdk-php-curl/blob/master/examples/mdfe/cria.php)
 
 
+## Preview MDFe
+
+Este método pré-valida os dados de uma MDFe e gera o pdf (DAMDFE) caso os dados sejam validados, sem criar efetivamente o documento.
+
+NOTA: Este método não deve ser usado indiscriminadamente antes da geração do real do NFCe, mas serve como auxilio em caso de duvidas sobre o correto preenchimento de algum campo.
+
+NOTA: Este método não garante que seu documento esteja correto e será autorizado pela SEFAZ, apenas indica se exitem ou não erros de estrutura nos dados fornecidos.
+
+É muito importante que estude a [nossa documentação](https://doc.cloud-dfe.com.br/v1/mdfe/#!/1-13) para poder enviar essa chamada.
+
+[VIDE EXEMPLO](https://github.com/cloud-dfe/clouddfe-sdk-php-curl/blob/master/examples/mdfe/preview.php)
+
+
 ## Busca MDFe
 
 Busca pelos documentos armazenados em nossa base de dados
