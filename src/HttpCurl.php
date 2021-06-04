@@ -54,7 +54,9 @@ class HttpCurl
         ];
         $this->options = (array) $config['options'];
         $this->timeout = (int) !empty($config['options']['timeout']) ? $config['options']['timeout'] : 60;
-        $this->http_version = (int) !empty($config['options']['http_version'])  ? $config['options']['http_version'] : CURL_HTTP_VERSION_NONE;
+        $this->http_version = (int) !empty($config['options']['http_version'])
+            ? $config['options']['http_version']
+            : CURL_HTTP_VERSION_NONE;
         $this->port = (int) !empty($config['options']['port']) ? $config['options']['port'] : 443;
     }
 

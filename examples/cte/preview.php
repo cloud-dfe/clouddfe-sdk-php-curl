@@ -111,6 +111,8 @@ try {
         ],
         "observacao" => ""
     ];
+
+    //os payloads são sempre ARRAYS
     $resp = $cte->preview($paylod);
 
     echo "<pre>";

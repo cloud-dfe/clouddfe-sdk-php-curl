@@ -3,7 +3,11 @@
 require_once(__DIR__ . '/../../bootstrap.php');
 
 use CloudDfe\SdkC\Cte;
-
+/**
+ * Este exemplo de uma chamada a API usando este SDK
+ *
+ * Este método solicita a criação de uma carta de correção
+ */
 try {
     $params = [
         'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',

@@ -3,7 +3,11 @@
 require_once(__DIR__ . '/../../bootstrap.php');
 
 use CloudDfe\SdkC\Cte;
-
+/**
+ * Este exemplo de uma chamada a API usando este SDK
+ *
+ * Este método solicita a inutilização de faixa de numeros de CTe, usado quendo por algum motivo existem numeros de CTe "PULADOS" no sistema.
+ */
 try {
     $params = [
         'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',

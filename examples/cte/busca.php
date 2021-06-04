@@ -4,6 +4,11 @@ require_once(__DIR__ . '/../../bootstrap.php');
 
 use CloudDfe\SdkC\Cte;
 
+/**
+ * Este exemplo de uma chamada a API usando este SDK
+ *
+ * Este método realiza uma busca de CTe sobre nossa base de dados baseado nos critérios de busca fornecidos.
+ */
 try {
     $params = [
         'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXAiOjcwLCJ1c3IiOiIyIiwidHAiOjIsImlhdCI6MTU4MDkzNzM3MH0.KvSUt2x8qcu4Rtp2XNTOINqR',
